@@ -1,0 +1,1 @@
+console.log("Django static JS loaded");

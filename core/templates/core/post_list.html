@@ -1,0 +1,21 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Posts{% endblock %}
+
+{% block content %}
+<h1>Post List</h1>
+
+<a href="{% url 'post_create' %}">➕ New Post</a>
+
+<ul>
+{% for post in posts %}
+    <li>
+        <strong>{{ post.title }}</strong>
+        <a href="{% url 'post_update' post.id %}">Edit</a>
+        <a href="{% url 'post_delete' post.id %}">Delete</a>
+    </li>
+{% empty %}
+    <li>No posts yet</li>
+{% endfor %}
+</ul>
+{% endblock %}

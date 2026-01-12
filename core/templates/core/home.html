@@ -1,0 +1,17 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h1>Home Page</h1>
+
+{% if is_logged_in %}
+    <p>Welcome {{ user_name }} 👋</p>
+{% endif %}
+
+<ul>
+{% for task in tasks %}
+    <li>{{ task }}</li>
+{% endfor %}
+</ul>
+{% endblock %}

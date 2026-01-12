@@ -1,0 +1,29 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block content %}
+<section>
+    <header>
+        <h1>📞 Contact Information</h1>
+        <p>You can reach me via the following channels:</p>
+    </header>
+
+    <ul>
+        <li>
+            📧 <strong>Email:</strong>
+            <a href="mailto:{{ email }}">{{ email }}</a>
+        </li>
+
+        <li>
+            📱 <strong>Phone:</strong>
+            <a href="tel:{{ phone }}">{{ phone }}</a>
+        </li>
+
+        <li>
+            🔗 <strong>Facebook:</strong>
+            {{ facebook }}
+        </li>
+    </ul>
+</section>
+{% endblock %}
