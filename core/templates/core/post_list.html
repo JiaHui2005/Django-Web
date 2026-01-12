@@ -5,17 +5,40 @@
 {% block content %}
 <h1>Post List</h1>
 
+<form method="get">
+  <input type="text" name="q" placeholder="Search..." value="{{ request.GET.q }}">
+  <button type="submit">Search</button>
+</form>
+
 <a href="{% url 'post_create' %}">➕ New Post</a>
 
 <ul>
 {% for post in posts %}
     <li>
         <strong>{{ post.title }}</strong>
-        <a href="{% url 'post_update' post.id %}">Edit</a>
-        <a href="{% url 'post_delete' post.id %}">Delete</a>
+        <small> {{ post.author }}</small>
+
+        {% if  user == post.author%}
+            <a href="{% url 'post_update' post.id %}">Edit</a>
+            <a href="{% url 'post_delete' post.id %}">Delete</a>
+        {% endif %}
     </li>
 {% empty %}
     <li>No posts yet</li>
 {% endfor %}
 </ul>
+<div class="pagination">
+  {% if is_paginated %}
+    {% if page_obj.has_previous %}
+      <a href="?page={{ page_obj.previous_page_number }}">« Prev</a>
+    {% endif %}
+
+    <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+
+    {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}">Next »</a>
+    {% endif %}
+  {% endif %}
+</div>
+
 {% endblock %}
